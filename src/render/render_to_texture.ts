@@ -70,6 +70,7 @@ export default class RenderToTexture {
         for (const id in style.sourceCaches) {
             this._coordsDescendingInv[id] = {};
             const tileIDs = style.sourceCaches[id].getVisibleCoordinates();
+            console.log('tileIDs: ', tileIDs);
             for (const tileID of tileIDs) {
                 const keys = this.terrain.sourceCache.getTerrainCoords(tileID);
                 for (const key in keys) {

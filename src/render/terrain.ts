@@ -164,6 +164,7 @@ export default class Terrain {
         // create empty DEM Objects, which will used while raster-dem tiles are loading.
         // creates an empty depth-buffer texture which is needed, during the initialization process of the 3d mesh..
         if (!this._emptyDemTexture) {
+            console.log('create empty dem texture');
             const context = this.painter.context;
             const image = new RGBAImage({width: 1, height: 1}, new Uint8Array(1 * 4));
             this._emptyDepthTexture = new Texture(context, image, context.gl.RGBA, {premultiply: false});

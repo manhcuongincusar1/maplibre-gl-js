@@ -16,4 +16,9 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "jest.jestCommandLine": "jest",
+  "cSpell.words": [
+    "maplibre",
+    "maplibregl",
+    "unproject"
+  ],
 }

@@ -32,7 +32,10 @@ function drawRaster(painter: Painter, sourceCache: SourceCache, layer: RasterSty
     const minTileZ = coords[coords.length - 1].overscaledZ;
 
     const align = !painter.options.moving;
+    console.log('min tile Z: ', minTileZ);
+    console.log({coords});
     for (const coord of coords) {
+
         // Set the lower zoom level to sublayer 0, and higher zoom levels to higher sublayers
         // Use gl.LESS to prevent double drawing in areas where tiles overlap.
         const depthMode = painter.depthModeForSublayer(coord.overscaledZ - minTileZ,
@@ -64,6 +67,8 @@ function drawRaster(painter: Painter, sourceCache: SourceCache, layer: RasterSty
         }
 
         const terrainData = painter.style.map.terrain && painter.style.map.terrain.getTerrainData(coord);
+
+        // Problem: Coord is just related to one terrain tile
         const terrainCoord = terrainData ? coord : null;
         const posMatrix = terrainCoord ? terrainCoord.posMatrix : painter.transform.calculatePosMatrix(coord.toUnwrapped(), align);
         const uniformValues = rasterUniformValues(posMatrix, parentTL || [0, 0], parentScaleBy || 1, fade, layer);
